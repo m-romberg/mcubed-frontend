@@ -1,10 +1,23 @@
-function SalesChat() {
-  console.debug("Routes");
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Questions from './Questions';
+import SalesChatForm from './SalesChatForm';
+
+function SalesChat({questions}) {
+  console.debug("SalesChat");
+  // const [questions, setQuestions] = useState(["why", "why not"]);
 
   return (
-    <div className="SalesChat">
-    Inside saleschat
-    </div>
+    <Container className="SalesChat">
+    <Row>
+    <Col>
+      { questions && <Questions questions={questions} />}
+       <SalesChatForm />
+    </Col>
+    </Row>
+    </Container>
   );
 }
 
