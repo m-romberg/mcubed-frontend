@@ -1,6 +1,7 @@
 import './App.css';
 import MccubedApi from './api/api';
 import {useState} from "react";
+import RoutesList from './routes-nav/RoutesList';
 
 function App() {
 
@@ -19,10 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={requests}>
-      Click me!
-      </button>
-      <p>{questions}</p>
+      <RoutesList />
 
     </div>
   );
