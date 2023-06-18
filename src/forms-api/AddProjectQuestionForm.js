@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
  *
  * ApiForms => AddProjectQuestion
  */
-function AddProjectQuestion({ submit }) {
+function AddProjectQuestionForm({ submit }) {
   console.debug("AddProjectQuestion");
   const [formData, setFormData] = useState("");
   const method = "post";
@@ -47,4 +47,4 @@ function AddProjectQuestion({ submit }) {
   );
 }
 
-export default AddProjectQuestion;
+export default AddProjectQuestionForm;

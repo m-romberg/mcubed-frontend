@@ -1,7 +1,8 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import AddProjectQuestion from "./AddProjectQuestion";
+import AddProjectQuestionForm from "./AddProjectQuestionForm";
+import AddVariableNameForm from './AddVariableNameForm';
 
 /**
  * Controll component for ApiForm
@@ -15,7 +16,8 @@ function ApiForms({submit}) {
     <Container className="ApiForms">
     <Row>
     <Col>
-      <AddProjectQuestion submit={submit} />
+      <AddProjectQuestionForm submit={submit} />
+      <AddVariableNameForm submit={submit} />
     </Col>
     </Row>
     </Container>
