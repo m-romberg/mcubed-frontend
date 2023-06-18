@@ -10,17 +10,19 @@ import 'bootstrap/dist/css/bootstrap.css';
  */
 function AddVariableNameForm({ submit }) {
   console.debug("AddVariableNameForm");
-  const [formData, setFormData] = useState({ name: "", units: "" });
+  const initialState = { name: "", units: "" };
+  const [formData, setFormData] = useState(initialState);
   const method = "post";
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     const data = {
       "action": "addprojectvariable",
       "name": formData["name"],
       "units": formData["units"]
     };
-    submit(data, method);
+    await submit(data, method);
+    setFormData(initialState);
 
   }
 

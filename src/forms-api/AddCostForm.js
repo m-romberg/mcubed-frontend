@@ -8,18 +8,19 @@ import 'bootstrap/dist/css/bootstrap.css';
  * ApiForms => AddCostForm
  */
 function AddCostForm({ submit }) {
-  console.debug("AddCostForm");
-  const [formData, setFormData] = useState([{
+  const intialState = [{
     "name": "",
     "cost": "",
     "quantity": "",
     "stock": "",
     "time": ""
-  }]);
+  }]
+  console.debug("AddCostForm");
+  const [formData, setFormData] = useState(intialState);
   console.debug("formData", formData);
   const method = "post";
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     console.debug("AddCostForm handleSubmit");
     evt.preventDefault();
     const data = {
@@ -27,8 +28,8 @@ function AddCostForm({ submit }) {
       "costbasis": formData,
     };
     console.log("data=", data);
-    submit(data, method);
-
+    await submit(data, method);
+    setFormData(intialState);
   }
 
   function handleChange(evt, indx) {

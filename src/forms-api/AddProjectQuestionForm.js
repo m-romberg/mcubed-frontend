@@ -13,11 +13,11 @@ function AddProjectQuestionForm({ submit }) {
   const [formData, setFormData] = useState("");
   const method = "post";
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     const data = {"action": "addprojectquestion", "text": formData};
-    submit(data, method);
-
+    await submit(data, method);
+    setFormData("");
   }
 
   function handleChange(evt) {
