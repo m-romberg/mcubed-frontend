@@ -19,7 +19,7 @@ class MccubedApi {
         : {};
 
     try {
-      return (await axios({ url, method, data, params })).data;
+      return (await axios({ url, method, data, params })).data.result;
     } catch (err) {
       console.error("API Error:", err.response);
       let message = err.response.data.error.message;
