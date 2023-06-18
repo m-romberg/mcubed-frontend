@@ -13,7 +13,7 @@ function SalesChat({questions}) {
     <Container className="SalesChat">
     <Row>
     <Col>
-      { questions && <Questions questions={questions} />}
+      { questions.length > 0 && <Questions questions={questions} />}
        <SalesChatForm />
     </Col>
     </Row>
