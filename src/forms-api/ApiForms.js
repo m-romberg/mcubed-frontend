@@ -3,6 +3,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import AddProjectQuestionForm from "./AddProjectQuestionForm";
 import AddVariableNameForm from './AddVariableNameForm';
+import AddCostForm from './AddCostForm';
 
 /**
  * Controll component for ApiForm
@@ -18,7 +19,8 @@ function ApiForms({submit}) {
     <Col>
       <AddProjectQuestionForm submit={submit} />
       <AddVariableNameForm submit={submit} />
-    </Col>
+      <AddCostForm submit={submit} />
+     </Col>
     </Row>
     </Container>
   );
