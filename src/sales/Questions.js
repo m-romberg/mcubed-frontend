@@ -15,9 +15,7 @@ function Questions({questions}) {
     <Row>
       <Col>
       <h4>Missing Questions</h4>
-        <ol>
-        {questions.map((q,i)=> (<li key={i}>{q}</li>))}
-        </ol>
+      {questions}
       </Col>
     </Row>
   </Container>)

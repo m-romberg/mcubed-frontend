@@ -13,19 +13,17 @@ import Navigation from './routes-nav/Navigation';
 function App() {
 
   let questions = [];
-  let request;
   async function requests(data, method){
     console.log("requests", "data", data, "method", method)
     const endpoint="";
-    request = await MccubedApi.request(endpoint,data,method);
-    console.log("request", request);
+    return await MccubedApi.request(endpoint,data,method);
   }
 
 
   return (
     <div className="App">
     <Navigation />
-      <RoutesList submit={requests} questions={questions} />
+    <RoutesList submit={requests} questions={questions} />
     </div>
   );
 }

@@ -15,15 +15,14 @@ class MccubedApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
-      return (await axios({ url, method, data, params })).data.result;
+      const result = (await axios({ url, method, data, params })).data;
+      return result;
     } catch (err) {
       console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
-      throw Array.isArray(message) ? message : [message];
     }
   }
 

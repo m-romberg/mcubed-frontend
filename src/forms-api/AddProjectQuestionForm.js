@@ -15,7 +15,7 @@ function AddProjectQuestionForm({ submit }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const data = {"action": "addprojectquestion", "text": formData};
+    const data = { "action": "addprojectquestion", "text": formData };
     await submit(data, method);
     setFormData("");
   }
@@ -26,9 +26,15 @@ function AddProjectQuestionForm({ submit }) {
 
   return (
     <Container className="AddProjectQuestion">
+
       <Row>
         <Col>
           <h4>Add a project question</h4>
+        </Col>
+      </Row>
+      <Row>
+      <Col xs={3}></Col>
+        <Col xs={6}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Question:</Form.Label>
@@ -37,14 +43,20 @@ function AddProjectQuestionForm({ submit }) {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Button variant="primary" type='submit'>
+            <Button style={styles["btn"]} variant="primary" type='submit'>
               Submit
             </Button>
           </Form>
         </Col>
+        <Col xs={3}></Col>
       </Row>
     </Container>
   );
 }
+
+const styles = {
+  btn: { margin: "1%" }
+};
+
 
 export default AddProjectQuestionForm;

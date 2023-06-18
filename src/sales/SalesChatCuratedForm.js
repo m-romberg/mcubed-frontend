@@ -9,33 +9,38 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
  *
  * SalesChat => SalesChatForm
  */
-function SalesChatRawForm({ submit, showCurated, initialContext, setInitialContext }) {
-  console.debug("SalesChatForm", submit, showCurated, initialContext, setInitialContext);
+function SalesChatCuratedForm({ submit, setSolution, setQuestions, setIsLoading }) {
+  console.debug("SalesChatForm");
   const [formData, setFormData] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const method = "post";
 
   async function handleSubmit(evt) {
     evt.preventDefault();
     const data = {
-      "action": "gptrawproject",
+      "action": "gptcuratedproject",
       "prompt": formData,
       "token": "default"
     };
     const result = await submit(data, method);
-    setFormData("");
-    setIsSubmitted(true)
-    setInitialContext(result);
+    console.log("result inside handle submit", result);
+    if (result.result.includes("MISSING QUESTIONS")){ //TODO: replace with actual indicator
+      setQuestions(result.result);
+    }
+    if (result.result.includes("SOLUTION PROVIDED")){
+      const data = {
+        "action": "gptprojectmanager",
+        "prompt": formData,
+        "token": "default"
+      };
+      const result = await submit(data, method);
+      console.log(result);
+      setSolution(result.result); // #TODO: call to final endpoint for solution
+      // setFormData("");
+    }
   }
 
   function handleChange(evt) {
     setFormData(evt.target.value);
-  }
-
-  /** move onto the next form */
-  function nextQuestion () {
-    showCurated()
-
   }
 
   return (
@@ -43,9 +48,9 @@ function SalesChatRawForm({ submit, showCurated, initialContext, setInitialConte
       <Row>
         <Col>
           <h4>SalesChat</h4>
-          {!isSubmitted && <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>Please input 1-3 sentences describing the client needs:</Form.Label>
+              <Form.Label>Please transcribe your sales call below. Include a summary of the call:</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -56,11 +61,7 @@ function SalesChatRawForm({ submit, showCurated, initialContext, setInitialConte
             <Button style={styles["btn"]} variant="primary" type='submit'>
               Submit
             </Button>
-          </Form>}
-          {initialContext.length > 0 && <p>{initialContext}</p>}
-          {isSubmitted && <Button style={styles["btn"]} variant="primary" onClick={nextQuestion}>
-          Next Question
-        </Button>}
+          </Form>
         </Col>
       </Row>
     </Container>
@@ -72,4 +73,4 @@ const styles = {
 };
 
 
-export default SalesChatRawForm;
+export default SalesChatCuratedForm;
