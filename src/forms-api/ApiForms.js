@@ -1,10 +1,24 @@
-function ApiForms() {
-  console.debug("Routes");
+import React from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import AddProjectQuestion from "./AddProjectQuestion";
+
+/**
+ * Controll component for ApiForm
+ *
+ * App => ApiForms => {AddProjectQuestion}
+ */
+function ApiForms({submit}) {
+  console.debug("ApiForms");
 
   return (
-    <div className="ApiForms">
-    inside api forms
-    </div>
+    <Container className="ApiForms">
+    <Row>
+    <Col>
+      <AddProjectQuestion submit={submit} />
+    </Col>
+    </Row>
+    </Container>
   );
 }
 

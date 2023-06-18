@@ -10,14 +10,14 @@ import ApiForms from "../forms-api/ApiForms";
  * Visiting a non-existant route navigates to the homepage.
  */
 
-function RoutesList() {
+function RoutesList({submit}) {
   console.debug("Routes");
 
   return (
     <div className="pt-5">
       <Routes>
           <Route path="/saleschat"element={<SalesChat />} />
-          <Route path="/apiforms"element={<ApiForms />} />
+          <Route path="/apiforms"element={<ApiForms submit={submit} />} />
           <Route path="*" element={<Navigate to="/saleschat" />}/>
       </Routes>
     </div>
