@@ -26,7 +26,7 @@ function SalesChatCuratedForm({ submit, setSolution, setQuestions, setIsLoading 
     if (result.result.includes("MISSING QUESTIONS")){ //TODO: replace with actual indicator
       setQuestions(result.result);
     }
-    if (result.result.includes("SOLUTION PROVIDED")){
+    else if (result.result.includes("SOLUTION PROVIDED")){
       const data = {
         "action": "gptprojectmanager",
         "prompt": formData,
@@ -37,6 +37,7 @@ function SalesChatCuratedForm({ submit, setSolution, setQuestions, setIsLoading 
       setSolution(result.result); // #TODO: call to final endpoint for solution
       // setFormData("");
     }
+    else{ setSolution(result.result);}
   }
 
   function handleChange(evt) {
